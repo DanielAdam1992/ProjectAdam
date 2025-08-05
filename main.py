@@ -12,7 +12,7 @@ API_KEY_TRIP = "5ae2e3f221c38a28845f05b6072cf50482464e992930cf4c2ace5cf2"
 resp = requests.get("https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY_WEATHER}")
 
 
-st.title('Weather App 🌧️')
+st.title('🌞 Weather App 🌧️')
 
 name = st.text_input('Enter your name', '')
 # Entering User Name for greetings
@@ -26,7 +26,7 @@ city = st.text_input('Enter the city you heading to: ', 'London')
 
 
 if city:
-    st.button('Check Weather')
+    st.button('Check Weather 🔎')
     weather_url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY_WEATHER}'
     rest_weather = requests.get(weather_url)
     data_weather = rest_weather.json()
