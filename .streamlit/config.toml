@@ -1,0 +1,7 @@
+[server]
+headless = true
+enableCORS = false
+enableXsrfProtection = false
+
+[general]
+installCommand = "poetry install --no-root"
