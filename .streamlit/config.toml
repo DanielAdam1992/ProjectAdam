@@ -5,3 +5,13 @@ enableXsrfProtection = false
 
 [general]
 installCommand = "poetry install --no-root"
+
+[tool.poetry]
+name = "projectadam"
+version = "0.1.0"
+description = ""
+authors = ["Danieladam.adam@gmail.com"]
+package-mode = false
+
+
+
