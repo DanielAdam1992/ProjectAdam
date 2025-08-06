@@ -42,6 +42,7 @@ if city:
         lon = data_weather['coord']['lon']
         lat = data_weather['coord']['lat']
 
+
         st.write(f"* The weather in {city} is **{temp:.2f}°** with **{humidity}%** humidity. **{cloud}%** of the sky covered with clouds.  " )
 
         trip_url = f"https://api.opentripmap.com/0.1/en/places/geoname?name={city}&apikey={API_KEY_TRIP}"
@@ -51,6 +52,22 @@ if city:
         population = data_trip.get("population", "Unknown")
 
         st.write(f"* Did you know that the population of {city} is **{population}**.")
+
+        # Get the timezone using One Call API (OpenWeatherMap)
+        onecall_url = f"https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&appid={API_KEY_WEATHER}"
+        response_onecall = requests.get(onecall_url)
+        data_onecall = response_onecall.json()
+
+        timezone_str = data_onecall.get('timezone')
+
+        if timezone_str:
+            # Get current time in that timezone
+            city_time = datetime.now(pytz.timezone(timezone_str))
+            formatted_time = city_time.strftime("%A, %B %d, %Y — %I:%M %p")
+            st.write(f"* The current local time in {city_time} is **{formatted_time}**.")
+        else:
+            st.warning("Could not determine the local time for this location.")
+
 
         # showing image of the weather in the city the user chose
         weather_main = data_weather['weather'][0]['main']
